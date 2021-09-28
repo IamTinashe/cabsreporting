@@ -1,0 +1,78 @@
+$white: #FFFFFF !default;
+$black: #222222 !default;
+$gray: #5C5C5C !default;
+$blue: #1665D8 !default;
+$sky-blue: #CAD3E3 !default;
+$light-blue: #73a3e8 !default;
+$faint-blue: #F6F7FB;
+$deep-blue: #698ABA;
+$green: #009677;
+$light-green: #60b848;
+
+
+$blue-lighter: #d0e0f7;
+$blue-light: #73a3e8;
+$blue-default: #1665D8;
+$blue-dark: #0d3d82;
+$blue-darker: #04142b;
+
+$red: #B2081D;
+
+$gray-5: #F5F8FF;
+$gray-10: #eeeeee;
+$gray-20: #c9c9c9;
+$gray-30: #949DBA;
+$gray-40: #7e8697;
+$gray-60: #77838f;
+$gray-80: #5f5f5f;
+
+$primary: $green;
+$secondary: $light-green;
+$tertiary: $deep-blue;
+$quaternary: $sky-blue;
+$quinary: $faint-blue;
+$background: $faint-blue;
+$text-muted: $deep-blue;
+$error: $red;
+
+$colors: (
+  'white': $white,
+  'black': $black,
+  'gray': $gray,
+  'blue': $blue,
+  'faint-blue': $faint-blue,
+  'sky-blue': $sky-blue,
+  'light-blue': $light-blue,
+  'deep-blue': $deep-blue,
+  'green': $green,
+  'light-green': $light-green,
+  'primary': $primary,
+  'secondary': $secondary,
+  'tertiary': $tertiary,
+  'quaternary': $quaternary,
+  'quinary': $quinary,
+  'background': $background,
+  'text-muted': $text-muted,
+  'error': $error,
+  'gray-5': $gray-5,
+  'gray-10': $gray-10,
+  'gray-20': $gray-20,
+  'gray-30': $gray-30,
+  'gray-40': $gray-40,
+  'gray-60': $gray-60,
+  'gray-80': $gray-80
+);
+
+@each $name, $value in $colors {
+  .Color-#{$name} {
+    color: $value !important;
+  }
+  .bgColor-#{$name} {
+    background-color: $value !important;
+  }
+  .borderColor-#{$name} {
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-color: $value !important;
+  }
+}

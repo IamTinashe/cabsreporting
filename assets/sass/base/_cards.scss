@@ -1,0 +1,13 @@
+.card{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  letter-spacing: normal;
+  background: $white;
+  box-shadow: 1px 1px 24px 0px rgba(148, 157, 186, 18%);
+  border-radius: 16px;
+}

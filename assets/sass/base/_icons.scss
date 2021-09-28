@@ -1,0 +1,33 @@
+@mixin icon{
+  content: '';
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  background-size: 48px 48px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  &:hover, &:focus{
+		-webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
+	}
+}
+
+.icon-facebook{
+  @include icon;
+  background-image: url('/icons/facebook.svg');
+}
+
+.icon-google{
+  @include icon;
+  background-image: url('/icons/google.svg');
+}
+
+.icon-linkedin{
+  @include icon;
+  background-image: url('/icons/linkedin.svg');
+}
+
+.icon-vkontakte{
+  @include icon;
+  background-image: url('/icons/vkontakte.svg');
+}

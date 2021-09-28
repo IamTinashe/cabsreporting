@@ -1,0 +1,76 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: middle;
+  letter-spacing: normal;
+  transition: all .2s ease-in-out;
+  padding: 16px 12px;
+
+  &:hover, &:focus{
+    -webkit-transform: translateY(-3px);
+    transform: translateY(-3px);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &.button-primary{
+    color: $white;
+    background-color: $secondary;
+    border: 1px solid $secondary;
+    &:hover, &:active, &:focus{
+      background-color: darken($primary, 5%);
+      border: 1px solid darken($primary, 5%);
+      color: $white;
+    }
+  }
+
+  &.button-secondary{
+    color: $primary;
+    background-color: $white;
+    border: 1px solid $primary;
+    &:hover, &:active, &:focus{
+      background-color: $primary;
+      border: 1px solid darken($primary, 5%);
+      color: $white;
+    }
+  }
+
+  &.expanded{
+    display: block;
+    width: 60%;
+  }
+
+  &.button-rounded{
+    border-radius: 50% !important;
+  }
+
+  &.button-pill {
+    border-radius: 30px;
+  }
+
+  &.button-semi-pill {
+    border-radius: 14px;
+  }
+
+  &.button-icon{
+    content: '';
+    display: inline-block;
+    height: auto;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    &.button-email{
+      background-position: 35% 50%;
+      background-image: url('/icons/email.svg');
+      width: 100%;
+      &:hover, &:focus, &:active{
+        background-image: url('/icons/email-white.svg');
+      }
+    }
+  }
+}

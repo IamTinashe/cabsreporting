@@ -1,0 +1,24 @@
+.small-only-expanded{
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  @include breakpoint('medium') {
+    width: auto;
+    padding-left: initial;
+    padding-right: initial;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.overflow-hidden{
+  overflow: hidden;
+}
+
+.cursor-pointer{
+  &:hover{
+    cursor: pointer;
+  }
+}
