@@ -1,6 +1,4 @@
-const pkg = require('./package')
-import path from 'path'
-import fs from 'fs'
+const pkg = require('./package');
 require('dotenv').config();
 const BASE_URL = 'http://180.10.1.53:8042';
 
@@ -90,7 +88,6 @@ module.exports = {
 
   buildModules: [
     '@nuxtjs/vuetify',
-    ['@nuxtjs/vuetify', { /* module options */ }]
   ],
 
   /*
@@ -103,11 +100,10 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-
-    },
+    extend(config, ctx) {},
     extractCSS: process.env.NODE_ENV === 'production',
     babel: {
+      compact: true,
       plugins: [
         [
           "component",
