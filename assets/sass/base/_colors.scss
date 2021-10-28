@@ -54,6 +54,7 @@ $colors: (
   'background': $background,
   'text-muted': $text-muted,
   'error': $error,
+  'red': $red,
   'gray-5': $gray-5,
   'gray-10': $gray-10,
   'gray-20': $gray-20,
@@ -68,7 +69,13 @@ $colors: (
     color: $value !important;
   }
   .bgColor-#{$name} {
+    transition: 0.5s;
     background-color: $value !important;
+  }
+  .bgColor-hover-#{$name} {
+    &:hover{
+      background-color: $value !important;
+    }
   }
   .borderColor-#{$name} {
     border-width: 1px;

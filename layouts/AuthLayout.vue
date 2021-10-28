@@ -9,7 +9,7 @@
       <ul class="list-unstyled components">
         <li>
           <NuxtLink
-            to="/"
+            to="/home"
             data-toggle="collapse"
             aria-expanded="false"
             class="dropdown-toggle"
@@ -40,7 +40,7 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li @click="logout()">
           <a href="#">
             <i class="fas fa-paper-plane"></i>
             Logout
@@ -90,7 +90,8 @@ export default {
   },
   data() {
     return {
-      title: 'HOME'
+      title: 'HOME',
+      auth: false
     }
   },
   mounted() {
@@ -100,10 +101,26 @@ export default {
         $("#content").toggleClass("table-active");
       });
     });
+
+    if(window.localStorage.getItem('id') != 'null'){
+      $nuxt.$emit('auth', true);
+      this.auth = true;
+    } else{
+      $nuxt.$on('auth', auth => {
+        this.auth = auth;
+      });
+    }
   },
   created(){
     this.title = this.$route.name.replace("-", " ").toUpperCase();
-  }
+  },
+  methods: {
+    logout() {
+      window.localStorage.clear();
+      $nuxt.$emit('auth', false);
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 <style lang="scss">

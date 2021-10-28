@@ -1,0 +1,31 @@
+<service>
+	<id>cabsreporting.exe</id>
+	<name>cabsreporting</name>
+	<description>CABS Reporting</description>
+	<executable>C:\Program Files\nodejs\node.exe</executable>
+	<argument>--harmony</argument>
+	<argument>C:\Users\om477804\Documents\OM Projects\universal\node_modules\node-windows\lib\wrapper.js</argument>
+	<argument>--file</argument>
+	<argument>C:\Users\om477804\Documents\OM Projects\universal\npm run dev</argument>
+	<argument>--scriptoptions=</argument>
+	<argument>--log</argument>
+	<argument>cabsreporting wrapper</argument>
+	<argument>--grow</argument>
+	<argument>0.25</argument>
+	<argument>--wait</argument>
+	<argument>1</argument>
+	<argument>--maxrestarts</argument>
+	<argument>3</argument>
+	<argument>--abortonerror</argument>
+	<argument>n</argument>
+	<argument>--stopparentfirst</argument>
+	<argument>undefined</argument>
+	<logmode>rotate</logmode>
+	<stoptimeout>30sec</stoptimeout>
+	<serviceaccount>
+		<domain>CABS-ICT-L043</domain>
+		<user>LocalSystem</user>
+		<password></password>
+	</serviceaccount>
+	<workingdirectory>C:\Users\om477804\Documents\OM Projects\universal</workingdirectory>
+</service>

@@ -31,3 +31,13 @@
   @include icon;
   background-image: url('/icons/vkontakte.svg');
 }
+
+.icon-bg-circle{
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}

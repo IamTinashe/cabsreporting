@@ -19,15 +19,16 @@
           <validation-observer ref="formValidator" class="w-100">
             <form role="form" class="form w-100">
               <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="EMAIL OR ACCOUNT NAME"
+                type="text"
+                name="username"
+                id="username"
+                placeholder="AD USERNAME"
                 class="form-input py-3 px-2 my-3 Color-primary p-small"
-                v-model="model.email"
+                v-model="model.username"
+                :class="userError?'borderColor-error':'borderColor-black'"
               />
               <p class="small Color-error text-left pt-0 mt-0 mb-4 email-error">
-                {{ emailError }}
+                {{ usernameError }}
               </p>
               <input
                 type="password"
@@ -36,6 +37,7 @@
                 placeholder="PASSWORD"
                 class="form-input py-3 px-2 mb-0 Color-primary p-small"
                 v-model="model.password"
+                :class="passError?'borderColor-error':'borderColor-black'"
               />
               <span
                 id="toggle-password"
@@ -47,7 +49,7 @@
                   toggle-password
                   cursor-pointer
                 "
-                @click="showPassword"
+                @click="showPassword()"
               ></span>
               <p
                 class="
@@ -65,7 +67,7 @@
               </p>
               <div class="row px-0 py-4 flex-container">
                 <div class="col-12 px-0 text-left">
-                  <input type="checkbox" v-model="model.rememberMe" />
+                  <input type="checkbox" />
                   <small class="small Color-tertiary"> Remember me </small>
                 </div>
               </div>
@@ -93,35 +95,42 @@
 </template>
 
 <script>
+import login from "@/assets/js/login";
 export default {
   data() {
     return {
       model: {
-        email: "",
-        password: "",
-        rememberMe: false,
+        username: "",
+        password: ""
       },
-      emailError: "",
+      usernameError: "",
       passwordError: "",
+      userError: false,
+      passError: false
     };
   },
   methods: {
-    onSubmit() {
-      if (this.emailErrorChecked()) {
-        this.removeClass("email", "borderColor-error");
+    async onSubmit() {
+      if (this.usernameErrorChecked()) {
         if (this.passwordErrorChecked()) {
-          this.removeClass("password", "borderColor-error");
-          console.log("success");
+          await login.attempt(this.model).then(response => {
+            window.localStorage.setItem('id', this.model.username);
+            $nuxt.$emit('auth', true);
+            console.log(response)
+          }).catch(error =>{
+            console.log(error);
+            $nuxt.$emit('auth', false);
+          });
         } else {
-          this.toggleClass("password", "borderColor-error");
+          this.passError = true;
         }
       } else {
-        this.toggleClass("email", "borderColor-error");
+        this.userError = true;
       }
     },
     showPassword() {
       let password = document.getElementById("password");
-      this.toggleClass("toggle-password", "fa-eye-slash");
+      $("span#toggle-password").toggleClass("toggle-password", "fa-eye-slash");
       password.type = password.type === "password" ? "text" : "password";
     },
     toggleClass(id, className) {
@@ -130,13 +139,10 @@ export default {
     removeClass(id, className) {
       document.getElementById(id).classList.remove(className);
     },
-    emailErrorChecked() {
-      this.emailError = "";
-      if (this.model.email < 1) {
-        this.emailError = "Please fill in your email address";
-        return false;
-      } else if (this.validateEmail(this.model.email) === false) {
-        this.emailError = "This email is not valid!";
+    usernameErrorChecked() {
+      this.usernameError = "";
+      if (this.model.username < 1) {
+        this.usernameError = "Please fill in your email address";
         return false;
       } else {
         return true;
@@ -151,11 +157,9 @@ export default {
         return true;
       }
     },
-    validateEmail(email) {
-      const re =
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    },
   },
+  async loginAttempt(){
+
+  }
 };
 </script>
