@@ -18,7 +18,7 @@ export default {
     LoginCard: () => import("@/components/auth/Login")
   },
   beforeMount() {
-    if(window.localStorage.getItem('id') == null){
+    if(window.localStorage.getItem('id') != null){
       window.location.href = '/home';
     }
   },

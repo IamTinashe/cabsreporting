@@ -7,7 +7,8 @@
         </h1>
       </div>
     </div>
-    <h2 class="section-header Color-primary mt-4 mb-0">SIGN IN</h2>
+    <h2 class="section-header Color-primary text-center mt-4 mb-0">SIGN IN</h2>
+    <p class="Color-error text-center small mt-3" v-if="error.length > 0"> {{error}}</p>
     <div class="content">
       <div
         class="flex-container pt-0 px-0 text-center align-items-center w-100"
@@ -106,7 +107,8 @@ export default {
       usernameError: "",
       passwordError: "",
       userError: false,
-      passError: false
+      passError: false,
+      error: ''
     };
   },
   methods: {
@@ -114,11 +116,16 @@ export default {
       if (this.usernameErrorChecked()) {
         if (this.passwordErrorChecked()) {
           await login.attempt(this.model).then(response => {
-            window.localStorage.setItem('id', this.model.username);
-            $nuxt.$emit('auth', true);
-            console.log(response)
+            if(response == true){
+              window.localStorage.setItem('id', this.model.username);
+              $nuxt.$emit('auth', true);
+              window.location.href = '/home';
+            }else{
+              this.error = 'Incorrect Login Credentials';
+              $nuxt.$emit('auth', false);
+            }
           }).catch(error =>{
-            console.log(error);
+           this.error = error;
             $nuxt.$emit('auth', false);
           });
         } else {

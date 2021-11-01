@@ -1,12 +1,12 @@
 import axios from 'axios'
 const BASE = process.env.baseUrl;
 
-class Auth {
-  static authenticate(data){
-    let endpoint = BASE + '/reporting/authenticate';
+class Emails {
+  static send(api){
+    let endpoint = BASE + api;
     return new Promise(async (resolve, reject) => {
       try {
-        let response = await axios.post(endpoint, data)
+        let response = await axios.get(endpoint)
         resolve(response.data);
       } catch (error) {
         reject(error.response)
@@ -15,4 +15,4 @@ class Auth {
   }
 }
 
-export default Auth;
+export default Emails;
