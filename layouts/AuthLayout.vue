@@ -102,13 +102,14 @@ export default {
       });
     });
 
-    if(window.localStorage.getItem('id') != 'null'){
+    if(window.localStorage.getItem('id') === null || window.localStorage.getItem('id') === 'null'){
+      $nuxt.$on('auth', auth => {
+        this.auth = auth;     
+      });
+      window.location.href = '/';
+    } else{
       $nuxt.$emit('auth', true);
       this.auth = true;
-    } else{
-      $nuxt.$on('auth', auth => {
-        this.auth = auth;
-      });
     }
   },
   created(){
