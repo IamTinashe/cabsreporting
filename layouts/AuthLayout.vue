@@ -8,12 +8,7 @@
 
       <ul class="list-unstyled components">
         <li>
-          <NuxtLink
-            to="/home"
-            data-toggle="collapse"
-            aria-expanded="false"
-            class="dropdown-toggle"
-          >
+          <NuxtLink to="/home">
             <i class="fas fa-home"></i>
             Home
           </NuxtLink>
@@ -85,11 +80,7 @@
           </ul>
         </li>
         <li v-if="user.role == 'admin'">
-          <NuxtLink
-            data-toggle="collapse"
-            aria-expanded="false"
-            class="dropdown-toggle"
-            to="/settings"
+          <NuxtLink to="/settings"
             ><i class="fas fa-cog"></i> Settings</NuxtLink
           >
         </li>
