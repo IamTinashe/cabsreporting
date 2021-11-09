@@ -97,6 +97,7 @@
 
 <script>
 import login from "@/assets/js/login";
+import users from "@/assets/js/users";
 export default {
   data() {
     return {
@@ -108,19 +109,26 @@ export default {
       passwordError: "",
       userError: false,
       passError: false,
-      error: ''
+      error: '',
+      user: {}
     };
   },
   methods: {
     async onSubmit() {
       if (this.usernameErrorChecked()) {
         if (this.passwordErrorChecked()) {
-          await login.attempt(this.model).then(response => {
-            window.localStorage.setItem('id', response.username);
-            $nuxt.$emit('auth', true);
-            window.location.href = '/home';
+          await login.attempt(this.model).then(async (response) => {
+            await users.getUserByOmID(response.username).then(user => {
+              this.user = user;
+              window.localStorage.setItem('id', user.id);
+              $nuxt.$emit('auth', true);
+              window.location.href = '/home';
+            }).catch(error => {
+              this.error = error.data.message;
+              $nuxt.$emit('auth', false);
+            })
           }).catch(error =>{
-           this.error = error;
+           this.error = error.data.message;
             $nuxt.$emit('auth', false);
           });
         } else {
