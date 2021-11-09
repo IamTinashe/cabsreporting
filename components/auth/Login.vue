@@ -116,14 +116,9 @@ export default {
       if (this.usernameErrorChecked()) {
         if (this.passwordErrorChecked()) {
           await login.attempt(this.model).then(response => {
-            if(response == true){
-              window.localStorage.setItem('id', this.model.username);
-              $nuxt.$emit('auth', true);
-              window.location.href = '/home';
-            }else{
-              this.error = 'Incorrect Login Credentials';
-              $nuxt.$emit('auth', false);
-            }
+            window.localStorage.setItem('id', response.username);
+            $nuxt.$emit('auth', true);
+            window.location.href = '/home';
           }).catch(error =>{
            this.error = error;
             $nuxt.$emit('auth', false);

@@ -92,6 +92,12 @@ export default {
           emailUrl: "/app/weeklyInd",
           number: "350,897",
         },
+        {
+          title: "Weekly Individual",
+          downloadUrl: "/api/accounts/download/unauthorizedOD",
+          emailUrl: "/api/accounts/download/unauthorizedOD",
+          number: "350,897",
+        },
       ],
       sent: false
     };

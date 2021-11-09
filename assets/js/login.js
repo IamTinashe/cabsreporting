@@ -1,9 +1,9 @@
 import axios from 'axios';
-const BASEUrl = 'https://172.16.0.39:1990';
+const BASEUrl = 'http://172.16.5.129:1993';
 
 class Login {
   static attempt(model) {
-    let api = '/ad/authenticate';
+    let api = '/user/authenticate';
     return new Promise(async (resolve, reject) => {
       try {
         let response = await axios.post(BASEUrl + api, model)
